@@ -25,9 +25,13 @@ class App extends PureComponent {
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
+  toggleHideCompleted() {
+    this.setState({ hideCompleted: !this.state.hideCompleted });
+  }
+
   renderTasks() {
     const { currentUser, tasks } = this.props
-    cont { hideCompleted } = this.state
+    const { hideCompleted } = this.state
     return tasks
       .filter(task => hideCompleted ? !task.checked : true)
       .map(task =>
@@ -37,10 +41,6 @@ class App extends PureComponent {
           showPrivateButton={task.owner === (currentUser && currentUser._id)}
         />
       );
-  }
-
-  toggleHideCompleted() {
-    this.setState({ hideCompleted: !this.state.hideCompleted });
   }
 
   render() {
